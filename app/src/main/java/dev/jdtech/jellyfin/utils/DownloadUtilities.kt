@@ -5,9 +5,11 @@ import android.content.Context
 import android.net.Uri
 import android.os.Environment
 import androidx.core.content.getSystemService
+import androidx.preference.PreferenceManager
 import dev.jdtech.jellyfin.database.DownloadDatabaseDao
 import dev.jdtech.jellyfin.models.DownloadItem
 import dev.jdtech.jellyfin.models.DownloadRequestItem
+import dev.jdtech.jellyfin.models.DownloadSeriesMetadata
 import dev.jdtech.jellyfin.models.PlayerItem
 import dev.jdtech.jellyfin.repository.JellyfinRepository
 import org.jellyfin.sdk.model.api.BaseItemDto
@@ -50,9 +52,13 @@ fun requestDownload(
 }
 
 private fun downloadFile(request: DownloadManager.Request, context: Context): Long {
+    val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+    val downloadOverData = preferences.getBoolean("download_mobile_data", false)
+    val downloadWhenRoaming = preferences.getBoolean("download_roaming", false)
+
     request.apply {
-        setAllowedOverMetered(false)
-        setAllowedOverRoaming(false)
+        setAllowedOverMetered(downloadOverData)
+        setAllowedOverRoaming(downloadWhenRoaming)
     }
     return context.getSystemService<DownloadManager>()!!.enqueue(request)
 }
@@ -183,6 +189,24 @@ fun baseItemDtoToDownloadMetadata(item: BaseItemDto): DownloadItem {
         playbackPosition = item.userData?.playbackPositionTicks ?: 0,
         playedPercentage = item.userData?.playedPercentage,
         overview = item.overview
+    )
+}
+
+fun downloadSeriesMetadataToBaseItemDto(metadata: DownloadSeriesMetadata): BaseItemDto {
+    val userData = UserItemDataDto(
+        playbackPositionTicks = 0,
+        playedPercentage = 0.0,
+        isFavorite = false,
+        playCount = 0,
+        played = false,
+        unplayedItemCount = metadata.episodes.size
+    )
+
+    return BaseItemDto(
+        id = metadata.itemId,
+        type = "Series",
+        name = metadata.name,
+        userData = userData
     )
 }
 

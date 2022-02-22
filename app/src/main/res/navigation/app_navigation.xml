@@ -29,7 +29,7 @@
             app:destination="@id/episodeBottomSheetFragment" />
         <action
             android:id="@+id/action_navigation_home_to_navigation_settings"
-            app:destination="@id/settingsFragment"
+            app:destination="@id/twoPaneSettingsFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -59,15 +59,19 @@
     </fragment>
 
     <fragment
-        android:id="@+id/settingsFragment"
-        android:name="dev.jdtech.jellyfin.fragments.SettingsFragment"
+        android:id="@+id/twoPaneSettingsFragment"
+        android:name="dev.jdtech.jellyfin.fragments.TwoPaneSettingsFragment"
         android:label="@string/title_settings">
         <action
-            android:id="@+id/action_navigation_settings_to_serverSelectFragment2"
+            android:id="@+id/action_navigation_settings_to_serverSelectFragment"
             app:destination="@id/serverSelectFragment" />
         <action
             android:id="@+id/action_settingsFragment_to_about_libraries"
             app:destination="@id/about_libraries" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="dev.jdtech.jellyfin.fragments.SettingsFragment">
     </fragment>
     <fragment
         android:id="@+id/libraryFragment"
@@ -159,6 +163,23 @@
             android:id="@+id/action_seasonFragment_to_episodeBottomSheetFragment"
             app:destination="@id/episodeBottomSheetFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/downloadSeriesFragment"
+        android:name="dev.jdtech.jellyfin.fragments.DownloadSeriesFragment"
+        android:label="{seriesName}"
+        tools:layout="@layout/fragment_season">
+        <argument
+            android:name="seriesMetadata"
+            app:argType="dev.jdtech.jellyfin.models.DownloadSeriesMetadata"/>
+        <argument
+            android:name="seriesName"
+            android:defaultValue="Series"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_downloadSeriesFragment_to_episodeBottomSheetFragment"
+            app:destination="@id/episodeBottomSheetFragment" />
+    </fragment>
     <dialog
         android:id="@+id/episodeBottomSheetFragment"
         android:name="dev.jdtech.jellyfin.fragments.EpisodeBottomSheetFragment"
@@ -203,6 +224,9 @@
         <action
             android:id="@+id/action_downloadFragment_to_mediaInfoFragment"
             app:destination="@id/mediaInfoFragment" />
+        <action
+            android:id="@+id/action_downloadFragment_to_downloadSeriesFragment"
+            app:destination="@id/downloadSeriesFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchResultFragment"
