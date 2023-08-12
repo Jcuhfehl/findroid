@@ -150,21 +150,7 @@ class PlayerActivity : BasePlayerActivity() {
                                 pipButton.isEnabled = true
                                 pipButton.imageAlpha = 255
 
-                                if (appPreferences.showChapterMarkers) {
-                                    val playerControlView = findViewById<PlayerControlView>(R.id.exo_controller)
-                                    val chapters: LongArray = when (viewModel.player) {
-                                        is MPVPlayer -> {
-                                            val player = (viewModel.player as MPVPlayer)
-                                            LongArray(player.getNumberOfChapters()) { index -> player.getChapterTime(index).toLong() * 1000 }
-                                        }
-                                        else -> LongArray(0)
-                                    }
-
-                                    playerControlView.setExtraAdGroupMarkers(
-                                        chapters,
-                                        BooleanArray(chapters.size) { false },
-                                    )
-                                }
+                                loadChapters()
                             }
                         }
                     }
@@ -310,6 +296,24 @@ class PlayerActivity : BasePlayerActivity() {
 
         viewModel.initializePlayer(args.items)
         hideSystemUI()
+    }
+
+    private fun loadChapters() {
+        if (appPreferences.showChapterMarkers) {
+            val playerControlView = findViewById<PlayerControlView>(R.id.exo_controller)
+            val chapters: LongArray = when (viewModel.player) {
+                is MPVPlayer -> {
+                    val player = (viewModel.player as MPVPlayer)
+                    LongArray(player.getNumberOfChapters()) { index -> player.getChapterTime(index).toLong() * 1000 }
+                }
+                else -> LongArray(0)
+            }
+
+            playerControlView.setExtraAdGroupMarkers(
+                chapters,
+                BooleanArray(chapters.size) { false },
+            )
+        }
     }
 
     override fun onNewIntent(intent: Intent?) {
