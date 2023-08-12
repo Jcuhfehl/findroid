@@ -1308,6 +1308,33 @@ class MPVPlayer(
         }
     }
 
+    fun getCurrentChapter(): Int {
+        return MPVLib.getPropertyInt("chapter")
+    }
+    fun getNumberOfChapters(): Int {
+        return MPVLib.getPropertyInt("chapters")
+    }
+
+    fun setCurrentChapter(chapter: Int) {
+        MPVLib.setPropertyInt("chapter", chapter)
+    }
+
+    fun nextChapter() {
+        setCurrentChapter(getCurrentChapter() + 1)
+    }
+
+    fun previousChapter() {
+        setCurrentChapter(getCurrentChapter() - 1)
+    }
+
+    fun getChapterTime(chapter: Int): Double {
+        return MPVLib.getPropertyDouble("chapter-list/$chapter/time")!!
+    }
+
+    fun getChapterTitle(chapter: Int): String {
+        return MPVLib.getPropertyString("chapter-list/$chapter/title")!!
+    }
+
     companion object {
         /**
          * Fraction to which audio volume is ducked on loss of audio focus
