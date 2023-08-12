@@ -99,9 +99,10 @@ class PlayerGestureHelper(
             }
 
             override fun onLongPress(e: MotionEvent) {
-                if (isControlsLocked || !appPreferences.playerGesturesChapterSkip || playerView.player !is MPVPlayer)
+                if (isControlsLocked || !appPreferences.playerGesturesChapterSkip || playerView.player !is MPVPlayer) {
                     return
-
+                }
+                
                 val viewWidth = playerView.measuredWidth
                 val areaWidth = viewWidth / 5 // Divide the view into 5 parts: 2:1:2
 
