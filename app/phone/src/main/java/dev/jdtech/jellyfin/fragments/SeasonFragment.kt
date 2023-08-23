@@ -25,6 +25,7 @@ import dev.jdtech.jellyfin.R
 import dev.jdtech.jellyfin.adapters.EpisodeListAdapter
 import dev.jdtech.jellyfin.databinding.FragmentSeasonBinding
 import dev.jdtech.jellyfin.dialogs.ErrorDialogFragment
+import dev.jdtech.jellyfin.dialogs.getStorageSelectionDialog
 import dev.jdtech.jellyfin.models.FindroidEpisode
 import dev.jdtech.jellyfin.models.PlayerItem
 import dev.jdtech.jellyfin.models.UiText
@@ -61,9 +62,22 @@ class SeasonFragment : Fragment() {
                 override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                     return when (menuItem.itemId) {
                         dev.jdtech.jellyfin.core.R.id.action_download_season -> {
-                            viewModel.download()
+                            if (requireContext().getExternalFilesDirs(null).filterNotNull().size > 1) {
+                                val storageDialog = getStorageSelectionDialog(
+                                    requireContext(),
+                                    onItemSelected = { storageIndex ->
+                                        createDownloadPreparingDialog()
+                                        viewModel.download(storageIndex = storageIndex)
+                                    },
+                                    onCancel = {
+                                    },
+                                )
+                                storageDialog.show()
+                                return true
+                            }
                             createDownloadPreparingDialog()
-                            true
+                            viewModel.download()
+                            return true
                         }
                         else -> false
                     }
