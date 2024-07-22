@@ -1,12 +1,23 @@
 ![Findroid banner](images/findroid-banner.png)
 
-# Findroid
-![GitHub release (with filter)](https://img.shields.io/github/v/release/jarnedemeulemeester/findroid?style=for-the-badge)
-![GitHub repo stars](https://img.shields.io/github/stars/jarnedemeulemeester/findroid?style=for-the-badge)
-![GitHub issues](https://img.shields.io/github/issues/jarnedemeulemeester/findroid?style=for-the-badge)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/jarnedemeulemeester/findroid?style=for-the-badge)
-![GitHub all releases](https://img.shields.io/github/downloads/jarnedemeulemeester/findroid/total?style=for-the-badge)
-![GitHub](https://img.shields.io/github/license/jarnedemeulemeester/findroid?style=for-the-badge)
+# Findroid (bleeding)
+
+## Difference from upstream
+Findroid has quite a few open pull requests which add great new features, which have not yet been merged due to a lack of time from the upstream maintainer. Because I'd still like to use all these new features together, I've decided to make a soft fork which carelessly merges (some of) these open pull requests. I don't extensively test or review these, so bugs are very much to be expected. Use this if you like to be on the bleeding edge of findroid's new features. 
+
+## Installing
+You can install this app alongside the official release of findroid. You can download the apk's from [here](https://nightly.link/Jcuhfehl/findroid/workflows/build.yaml/bleeding), you probably need phone-libre-arm64-v8a-debug.apk.
+
+## Merged Pull Requests
+- Add option to automatically turn on offline mode
+- Open season view from episode
+- Add season downloads
+- Set sort order for collection view to release date
+- Add mpv settings to enable high quality
+- Fix navigation crashes
+- Show thumbnails even when server is unreachable
+
+# Findroid (upstream)
 
 Findroid is third-party Android application for Jellyfin that provides a native user interface to browse and play movies and series.
 
@@ -14,7 +25,7 @@ I am developing this application in my spare time.
 
 **This project is in its early stages so expect bugs.**
 
-<a href='https://play.google.com/store/apps/details?id=dev.jdtech.jellyfin'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' height="80"/></a><a href='http://www.amazon.com/gp/product/B0BTWC8DNZ'><img alt='Available at Amazon Appstore' src='https://user-images.githubusercontent.com/32322857/219019331-027a6775-7362-44bb-a026-281f71e9b37b.png' height="80"/></a><a href='https://apt.izzysoft.de/fdroid/index/apk/dev.jdtech.jellyfin'><img alt='Get it on IzzyOnDroid' src='https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png' height="80"/></a>
+<a href='https://play.google.com/store/apps/details?id=dev.jdtech.jellyfin'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' height="80"/></a><a href='http://www.amazon.com/gp/product/B0BTWC8DNZ'><img alt='Available at Amazon Appstore' src='https://user-images.githubusercontent.com/32322857/219019331-027a6775-7362-44bb-a026-281f71e9b37b.png' height="80"/></a><a href='https://appgallery.huawei.com/app/C107646987'><img alt='Explore it on Huawei AppGallery' src='https://user-images.githubusercontent.com/32322857/219013519-f0a11e17-c32c-42fd-8009-ab77fe2c23e7.png' height="80"/></a><a href='https://apt.izzysoft.de/fdroid/index/apk/dev.jdtech.jellyfin'><img alt='Get it on IzzyOnDroid' src='https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png' height="80"/></a>
 
 ## Screenshots
 | Home                                | Library                             | Movie                           | Season                            | Episode                             |
@@ -29,7 +40,7 @@ I am developing this application in my spare time.
 - ExoPlayer
   - Video codecs: H.263, H.264, H.265, VP8, VP9, AV1 
     - Support depends on Android device
-  - Audio codecs: Vorbis, Opus, FLAC, ALAC, PCM, MP3, AAC, AC-3, E-AC-3, DTS, DTS-HD, TrueHD 
+  - Audio codecs: Vorbis, Opus, FLAC, ALAC, PCM, MP3, AMR-NB, AMR-WB, AAC, AC-3, E-AC-3, DTS, DTS-HD, TrueHD 
     - Support provided by ExoPlayer FFmpeg extension
   - Subtitle codecs: SRT, VTT, SSA/ASS, PGSSUB
     - SSA/ASS has limited styling support see [this issue](https://github.com/google/ExoPlayer/issues/8435)
@@ -40,9 +51,6 @@ I am developing this application in my spare time.
   - Subtitle codecs: SRT, VTT, SSA/ASS, DVDSUB
   - Optionally force software decoding when hardware decoding has issues.
 - Picture-in-picture mode
-- Media chapters
-  - Timeline markers
-  - Chapter navigation gestures
 
 ## Planned features
 - Android TV
@@ -66,3 +74,4 @@ The Android robot is reproduced or modified from work created and shared by Goog
 Android is a trademark of Google LLC.
 
 Google Play and the Google Play logo are trademarks of Google LLC.
+

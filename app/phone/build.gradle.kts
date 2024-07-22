@@ -15,7 +15,7 @@ android {
     buildToolsVersion = Versions.buildTools
 
     defaultConfig {
-        applicationId = "dev.jdtech.jellyfin"
+        applicationId = "io.github.jcuhfehl.findroid"
         minSdk = Versions.minSdk
         targetSdk = Versions.targetSdk
 
@@ -31,13 +31,16 @@ android {
             .map { it as com.android.build.gradle.internal.api.BaseVariantOutputImpl }
             .forEach { output ->
                 if (variant.buildType.name == "release") {
-                    val outputFileName = "findroid-v${variant.versionName}-${variant.flavorName}-${output.getFilter("ABI")}.apk"
+                    val outputFileName = "findroid-${variant.flavorName}-${output.getFilter("ABI")}.apk"
                     output.outputFileName = outputFileName
                 }
             }
     }
 
     buildTypes {
+        getByName("release") {
+            signingConfig = signingConfigs.getByName("debug")
+        }
         named("debug") {
             applicationIdSuffix = ".debug"
         }
@@ -91,11 +94,11 @@ ktlint {
 }
 
 dependencies {
-    implementation(projects.core)
-    implementation(projects.data)
-    implementation(projects.preferences)
-    implementation(projects.player.core)
-    implementation(projects.player.video)
+    implementation(project(":core"))
+    implementation(project(":data"))
+    implementation(project(":preferences"))
+    implementation(project(":player:core"))
+    implementation(project(":player:video"))
     implementation(libs.aboutlibraries.core)
     implementation(libs.aboutlibraries)
     implementation(libs.androidx.activity)
@@ -131,3 +134,4 @@ dependencies {
     androidTestImplementation(libs.hilt.android.testing)
     kspTest(libs.hilt.android.compiler)
 }
+

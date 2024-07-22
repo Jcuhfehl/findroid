@@ -14,7 +14,7 @@ android {
     buildToolsVersion = Versions.buildTools
 
     defaultConfig {
-        applicationId = "dev.jdtech.jellyfin"
+        applicationId = "io.github.jcuhfehl.findroid"
         minSdk = Versions.minSdk
         targetSdk = Versions.targetSdk
 
@@ -33,6 +33,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
             )
+            signingConfig = signingConfigs.getByName("debug")
         }
         register("staging") {
             initWith(getByName("release"))
