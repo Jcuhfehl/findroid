@@ -202,4 +202,8 @@
     <string name="pref_player_gestures_seek_trickplay_summary">Display preview images on seek gesture</string>
     <string name="trickplay">Trickplay</string>
     <string name="delete_season_button_description">Delete Season</string>
+    <string name="pref_player_mpv_hq">High quality</string>
+    <string name="pref_player_mpv_hq_summary">Enable high quality playback. Might cause performance issues on older devices.</string>
+    <string name="pref_player_mpv_deband_summary">Removes banding artifacts at the cost of some fine detail</string>
+    <string name="pref_player_mpv_deband">Deband</string>
 </resources>
