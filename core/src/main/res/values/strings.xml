@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Findroid</string>
+    <string name="app_name" translatable="false">Findroid Bleeding</string>
     <string name="app_description">Third-party native Jellyfin app</string>
     <string name="jellyfin_banner">Jellyfin banner</string>
     <string name="add_server">Add server</string>
