@@ -50,7 +50,7 @@ class DownloaderImpl(
         try {
             val source =
                 jellyfinRepository.getMediaSources(item.id, true).first { it.id == sourceId }
-            val intro = jellyfinRepository.getIntroTimestamps(item.id)
+            val segments = jellyfinRepository.getSegments(item.id)
             val trickplayInfo =
                 if (item is FindroidSources) {
                     item.trickplayInfo?.get(sourceId)
