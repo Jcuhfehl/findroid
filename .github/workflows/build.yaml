@@ -21,6 +21,7 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew assembleRelease
         # Upload all build artifacts in separate steps. This can be shortened once https://github.com/actions/upload-artifact/pull/354 is merged.
+      # Phone
       - name: Upload artifact findroid-libre-arm64-v8a.apk
         uses: actions/upload-artifact@v4
         with:
@@ -41,3 +42,24 @@ jobs:
         with:
           name: findroid-libre-x86.apk
           path: ./app/phone/build/outputs/apk/libre/release/findroid-libre-x86.apk
+      # Tv
+      - name: Upload artifact tv-libre-arm64-v8a-release.apk
+        uses: actions/upload-artifact@v4
+        with:
+          name: tv-libre-arm64-v8a-release.apk
+          path: ./app/tv/build/outputs/apk/libre/release/tv-libre-arm64-v8a-release.apk
+      - name: Upload artifact tv-libre-armeabi-v7a-release.apk
+        uses: actions/upload-artifact@v4
+        with:
+          name: tv-libre-armeabi-v7a-release.apk
+          path: ./app/tv/build/outputs/apk/libre/release/tv-libre-armeabi-v7a-release.apk
+      - name: Upload artifact tv-libre-x86-release.apk
+        uses: actions/upload-artifact@v4
+        with:
+          name: tv-libre-x86-release.apk
+          path: ./app/tv/build/outputs/apk/libre/release/tv-libre-x86-release.apk
+      - name: Upload artifact tv-libre-x86_64-release.apk
+        uses: actions/upload-artifact@v4
+        with:
+          name: tv-libre-x86_64-release.apk
+          path: ./app/tv/build/outputs/apk/libre/release/tv-libre-x86_64-release.apk
